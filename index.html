@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Установщик модов by dimakovboi</title>
+    <!-- Подключение иконок Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Подключение шрифтов Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Общие стили и сброс */
+        :root {
+            --primary-color: #9400d3; /* Неоново-фиолетовый */
+            --background-color: #000000;
+            --text-color: #ffffff;
+            --glow-color: rgba(148, 0, 211, 0.75);
+            --telegram-color: #24A1DE;
+            --youtube-color: #FF0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* 3D фон с частицами */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        /* Контейнер для центрирования контента */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Шапка сайта */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 0, 211, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+            text-shadow: 0 0 5px var(--glow-color);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        /* Главный экран (Hero Section) */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 100vh;
+            padding: 100px 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            text-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px var(--glow-color), inset 0 0 10px rgba(148, 0, 211, 0.5);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            box-shadow: 0 0 25px var(--glow-color), 0 0 50px var(--glow-color);
+            transform: translateY(-3px);
+        }
+
+        /* Секция "Соцсети" */
+        #social {
+            padding: 80px 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        #social h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--text-color);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .social-icons a {
+            color: var(--text-color);
+            font-size: 2.5rem;
+            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        /* ИЗМЕНЕНИЕ: Добавлены стили для иконок соцсетей */
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+            text-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .social-icons a.telegram:hover {
+            color: var(--telegram-color);
+            text-shadow: 0 0 15px var(--telegram-color);
+        }
+
+        .social-icons a.youtube:hover {
+            color: var(--youtube-color);
+            text-shadow: 0 0 15px var(--youtube-color);
+        }
+
+        /* Закрепленное рекламное видео */
+        .fixed-video-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 320px;
+            height: 180px;
+            z-index: 9999;
+            box-shadow: 0 0 20px var(--glow-color);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .fixed-video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .nav-menu {
+                display: none; /* Можно заменить на меню-бургер при необходимости */
+            }
+
+            .fixed-video-container {
+                width: 240px;
+                height: 135px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+             #social h2 {
+                font-size: 2rem;
+            }
+             .social-icons a {
+                font-size: 2rem;
+            }
+            .fixed-video-container {
+                width: 180px;
+                height: 101px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- 3D фон -->
+<div id="particles-js"></div>
+
+<!-- Шапка -->
+<header>
+    <nav class="container">
+        <a href="#hero" class="logo">dimakovboi</a>
+        <ul class="nav-menu">
+            <li><a href="#hero">Главная</a></li>
+            <li><a href="#social">Соцсети</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Главный экран -->
+<main>
+    <section id="hero">
+        <div class="container hero-content">
+            <h1>Установщик модов by dimakovboi</h1>
+            <p>Самый удобный способ установить моды для Among Us. Быстро, безопасно и всегда актуальные версии.</p>
+            <a href="https://github.com/dima-kovboi/cheats-installer/releases/download/InstallerMods/by.dimakovboi.exe" class="cta-button">СКАЧАТЬ УСТАНОВЩИК</a>
+        </div>
+    </section>
+
+    <!-- Секция "Соцсети" -->
+    <section id="social">
+        <div class="container">
+            <h2>Следи за мной в соцсетях</h2>
+            <div class="social-icons">
+                <!-- ИЗМЕНЕНИЕ: Добавлены классы для иконок -->
+                <a href="https://t.me/dima_kovboi" target="_blank" aria-label="Telegram" class="telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.youtube.com/@dimakovboi" target="_blank" aria-label="YouTube" class="youtube"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.twitch.tv/dimakovboi" target="_blank" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Закрепленное рекламное видео -->
+<!-- ИЗМЕНЕНИЕ: Кнопка закрытия удалена -->
+<div class="fixed-video-container" id="video-container">
+    <video src="https://github.com/user-attachments/assets/ab9796d8-3caa-4f99-8c0d-333cbab89498" autoplay loop muted playsinline></video>
+</div>
+
+<!-- Библиотека particles.js -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<!-- Скрипты JavaScript -->
+<script>
+    /* ИЗМЕНЕНИЕ: Обновленная конфигурация particles.js */
+    particlesJS('particles-js', {
+        "particles": {
+            "number": {
+                "value": 100,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#9400d3"
+            },
+            "shape": {
+                "type": "circle",
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": true,
+                "anim": {
+                    "enable": true,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#9400d3",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 2.5, /* Слегка увеличена скорость */
+                "direction": "bottom", /* Частицы дрейфуют вниз */
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse" /* Эффект отталкивания от курсора */
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "repulse": {
+                    "distance": 100, /* Дистанция отталкивания */
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+            }
+        },
+        "retina_detect": true
+    });
+
+    /* ИЗМЕНЕНИЕ: Скрипт для закрытия видео удален */
+
+</script>
+</body>
+</html>
