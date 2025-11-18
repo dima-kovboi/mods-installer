@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Установщик модов by dimakovboi</title>
-    <!-- Подключение иконок Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Подключение шрифтов Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* Общие стили и сброс */
         :root {
-            --primary-color: #9400d3; /* Неоново-фиолетовый */
+            --primary-color: #9400d3;
+            --primary-light: #b933ff;
+            --primary-dark: #6a0099;
             --background-color: #000000;
+            --surface-color: #0a0a0a;
             --text-color: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
             --glow-color: rgba(148, 0, 211, 0.75);
-            --telegram-color: #24A1DE;
+            --glow-color-light: rgba(185, 51, 255, 0.5);
+            --telegram-color: #0088cc;
+            --telegram-light: #24A1DE;
             --youtube-color: #FF0000;
+            --accent-cyan: #00d9ff;
+            --accent-magenta: #ff006e;
+            --border-color: rgba(148, 0, 211, 0.3);
         }
 
         * {
@@ -42,17 +48,15 @@
             text-transform: uppercase;
         }
 
-        /* 3D фон с частицами */
         #particles-js {
             position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            z-index: -1;
+            z-index: 1;
         }
 
-        /* Контейнер для центрирования контента */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -61,7 +65,6 @@
             z-index: 2;
         }
 
-        /* Шапка сайта */
         header {
             position: fixed;
             top: 0;
@@ -69,10 +72,10 @@
             width: 100%;
             padding: 20px 0;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(148, 0, 211, 0.2);
+            border-bottom: 1px solid var(--border-color);
         }
 
         nav {
@@ -87,7 +90,13 @@
             color: var(--text-color);
             text-decoration: none;
             font-weight: 700;
-            text-shadow: 0 0 5px var(--glow-color);
+            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--primary-light);
+            text-shadow: 0 0 15px var(--primary-light), 0 0 30px var(--primary-light);
         }
 
         .nav-menu {
@@ -99,124 +108,238 @@
         .nav-menu a {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 18px;
+            font-size: 0.95rem;
             font-weight: 600;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta));
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
         }
 
         .nav-menu a:hover {
-            color: var(--primary-color);
+            color: var(--primary-light);
             text-shadow: 0 0 10px var(--glow-color);
         }
 
-        /* Главный экран (Hero Section) */
         #hero {
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             min-height: 100vh;
-            padding: 100px 20px;
+            padding: 100px 20px 50px;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
             color: var(--text-color);
-            text-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color);
+            text-shadow: 0 0 20px var(--glow-color), 0 0 40px var(--primary-light), 0 0 60px rgba(0, 217, 255, 0.3);
+            line-height: 1.2;
+            background: linear-gradient(135deg, #9400d3, #ff006e, #00d9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(148, 0, 211, 0.5));
         }
 
         .hero-content p {
             font-size: 1.2rem;
             max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
+            margin: 0 auto 50px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .cta-button {
             display: inline-block;
-            padding: 15px 40px;
+            padding: 16px 45px;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--text-color);
             text-decoration: none;
-            background-color: transparent;
-            border: 2px solid var(--primary-color);
-            border-radius: 5px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
-            box-shadow: 0 0 15px var(--glow-color), inset 0 0 10px rgba(148, 0, 211, 0.5);
+            box-shadow: 0 0 20px var(--glow-color), 0 0 40px rgba(185, 51, 255, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            z-index: 10;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
-            background-color: var(--primary-color);
-            color: var(--background-color);
-            box-shadow: 0 0 25px var(--glow-color), 0 0 50px var(--glow-color);
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-cyan));
+            box-shadow: 0 0 30px var(--primary-light), 0 0 60px rgba(185, 51, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
         }
 
-        /* Секция "Соцсети" */
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        .cta-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: 0 0 10px rgba(148, 0, 211, 0.3);
+        }
+
+        .cta-button.disabled:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            box-shadow: 0 0 10px rgba(148, 0, 211, 0.3);
+            transform: none;
+        }
+
         #social {
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
-            background: rgba(0, 0, 0, 0.3);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(148, 0, 211, 0.05));
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         #social h2 {
             font-size: 2.5rem;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             color: var(--text-color);
-            text-shadow: 0 0 10px var(--glow-color);
+            text-shadow: 0 0 15px var(--glow-color);
+            background: linear-gradient(135deg, #9400d3, #00d9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 25px;
+            gap: 40px;
+            flex-wrap: wrap;
         }
 
         .social-icons a {
             color: var(--text-color);
             font-size: 2.5rem;
-            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
         }
 
-        /* ИЗМЕНЕНИЕ: Добавлены стили для иконок соцсетей */
+        .social-icons a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(185, 51, 255, 0.1));
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .social-icons a:hover::before {
+            opacity: 1;
+        }
+
         .social-icons a:hover {
             color: var(--primary-color);
-            transform: scale(1.2);
+            transform: scale(1.1) translateY(-5px);
             text-shadow: 0 0 15px var(--glow-color);
+            border-color: var(--primary-light);
+            box-shadow: 0 0 20px var(--glow-color);
         }
 
         .social-icons a.telegram:hover {
-            color: var(--telegram-color);
-            text-shadow: 0 0 15px var(--telegram-color);
+            color: var(--telegram-light);
+            text-shadow: 0 0 15px var(--telegram-light);
+            border-color: var(--telegram-light);
+            box-shadow: 0 0 20px var(--telegram-light);
         }
 
         .social-icons a.youtube:hover {
             color: var(--youtube-color);
             text-shadow: 0 0 15px var(--youtube-color);
+            border-color: var(--youtube-color);
+            box-shadow: 0 0 20px var(--youtube-color);
         }
 
-        /* Закрепленное рекламное видео */
         .fixed-video-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
             width: 320px;
             height: 180px;
-            z-index: 9999;
-            box-shadow: 0 0 20px var(--glow-color);
-            border-radius: 5px;
+            z-index: 999;
+            box-shadow: 0 0 20px var(--glow-color), 0 0 40px rgba(185, 51, 255, 0.3);
+            border-radius: 8px;
             overflow: hidden;
+            border: 2px solid var(--border-color);
         }
 
         .fixed-video-container video {
@@ -225,7 +348,160 @@
             object-fit: cover;
         }
 
-        /* Адаптивность */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--surface-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 50px 40px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 0 40px var(--glow-color), 0 0 80px rgba(185, 51, 255, 0.3);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            text-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .countdown-timer {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 15px var(--accent-cyan);
+            margin: 30px 0;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .modal-button {
+            padding: 14px 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            border: 2px solid var(--primary-light);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-button.subscribe {
+            background: linear-gradient(135deg, var(--telegram-color), var(--telegram-light));
+            color: var(--text-color);
+            border-color: var(--telegram-light);
+            box-shadow: 0 0 15px var(--telegram-light);
+        }
+
+        .modal-button.subscribe:hover {
+            background: linear-gradient(135deg, var(--telegram-light), var(--accent-cyan));
+            box-shadow: 0 0 25px var(--telegram-light), 0 0 40px rgba(0, 217, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .modal-button.download {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--text-color);
+            box-shadow: 0 0 15px var(--glow-color);
+        }
+
+        .modal-button.download:hover:not(.disabled) {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-cyan));
+            box-shadow: 0 0 25px var(--primary-light), 0 0 40px rgba(185, 51, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .modal-button.download.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .modal-button.download.disabled:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            box-shadow: 0 0 15px var(--glow-color);
+            transform: none;
+        }
+
+        .modal-button.download.active {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .verification-status {
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .verification-status.pending {
+            color: var(--text-muted);
+        }
+
+        .verification-status i {
+            font-size: 1rem;
+        }
+
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5rem;
@@ -236,7 +512,7 @@
             }
 
             .nav-menu {
-                display: none; /* Можно заменить на меню-бургер при необходимости */
+                display: none;
             }
 
             .fixed-video-container {
@@ -245,37 +521,71 @@
                 bottom: 15px;
                 right: 15px;
             }
+
+            .modal-content {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+
+            .countdown-timer {
+                font-size: 2.5rem;
+            }
+
+            #social h2 {
+                font-size: 2rem;
+            }
+
+            .social-icons a {
+                font-size: 2rem;
+                width: 60px;
+                height: 60px;
+            }
         }
 
         @media (max-width: 480px) {
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 0.95rem;
             }
 
             .cta-button {
                 padding: 12px 30px;
                 font-size: 1rem;
             }
-             #social h2 {
-                font-size: 2rem;
+
+            #social h2 {
+                font-size: 1.5rem;
             }
-             .social-icons a {
-                font-size: 2rem;
+
+            .social-icons a {
+                font-size: 1.5rem;
+                width: 50px;
+                height: 50px;
             }
+
             .fixed-video-container {
                 width: 180px;
                 height: 101px;
             }
-        }
 
+            .modal-content {
+                padding: 30px 20px;
+                max-width: 90vw;
+            }
+
+            .countdown-timer {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-<!-- 3D фон -->
 <div id="particles-js"></div>
 
-<!-- Шапка -->
 <header>
     <nav class="container">
         <a href="#hero" class="logo">dimakovboi</a>
@@ -286,22 +596,19 @@
     </nav>
 </header>
 
-<!-- Главный экран -->
 <main>
     <section id="hero">
         <div class="container hero-content">
             <h1>Установщик модов by dimakovboi</h1>
             <p>Самый удобный способ установить моды для Among Us. Быстро, безопасно и всегда актуальные версии.</p>
-            <a href="https://github.com/dima-kovboi/cheats-installer/releases/download/InstallerMods/by.dimakovboi.exe" class="cta-button">СКАЧАТЬ УСТАНОВЩИК</a>
+            <button class="cta-button" id="downloadBtn">СКАЧАТЬ УСТАНОВЩИК</button>
         </div>
     </section>
 
-    <!-- Секция "Соцсети" -->
     <section id="social">
         <div class="container">
             <h2>Следи за мной в соцсетях</h2>
             <div class="social-icons">
-                <!-- ИЗМЕНЕНИЕ: Добавлены классы для иконок -->
                 <a href="https://t.me/dima_kovboi" target="_blank" aria-label="Telegram" class="telegram"><i class="fab fa-telegram"></i></a>
                 <a href="https://www.youtube.com/@dimakovboi" target="_blank" aria-label="YouTube" class="youtube"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.twitch.tv/dimakovboi" target="_blank" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
@@ -310,18 +617,34 @@
     </section>
 </main>
 
-<!-- Закрепленное рекламное видео -->
-<!-- ИЗМЕНЕНИЕ: Кнопка закрытия удалена -->
 <div class="fixed-video-container" id="video-container">
     <video src="https://github.com/user-attachments/assets/ab9796d8-3caa-4f99-8c0d-333cbab89498" autoplay loop muted playsinline></video>
 </div>
 
-<!-- Библиотека particles.js -->
+<div class="modal-overlay" id="verificationModal">
+    <div class="modal-content">
+        <h2>Проверка подписки</h2>
+        <p>Подпишитесь на Telegram канал для разблокировки загрузки:</p>
+        <div class="verification-status pending" id="verificationStatus">
+            <i class="fas fa-hourglass-half"></i>
+            <span>Ожидание подписки...</span>
+        </div>
+        <div class="countdown-timer" id="countdown">20</div>
+        <p id="countdownText" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">Загрузка будет доступна через <span id="countdownSeconds">20</span> секунд</p>
+        <div class="modal-buttons">
+            <a href="https://t.me/dima_kovboi" target="_blank" class="modal-button subscribe">
+                <i class="fab fa-telegram" style="margin-right: 8px;"></i>ПОДПИСАТЬСЯ НА TELEGRAM
+            </a>
+            <button class="modal-button download disabled" id="downloadModalBtn" disabled>
+                <i class="fas fa-download" style="margin-right: 8px;"></i>СКАЧАТЬ УСТАНОВЩИК
+            </button>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
-<!-- Скрипты JavaScript -->
 <script>
-    /* ИЗМЕНЕНИЕ: Обновленная конфигурация particles.js */
     particlesJS('particles-js', {
         "particles": {
             "number": {
@@ -360,8 +683,8 @@
             },
             "move": {
                 "enable": true,
-                "speed": 2.5, /* Слегка увеличена скорость */
-                "direction": "bottom", /* Частицы дрейфуют вниз */
+                "speed": 2.5,
+                "direction": "bottom",
                 "random": false,
                 "straight": false,
                 "out_mode": "out",
@@ -372,7 +695,7 @@
             "events": {
                 "onhover": {
                     "enable": true,
-                    "mode": "repulse" /* Эффект отталкивания от курсора */
+                    "mode": "repulse"
                 },
                 "onclick": {
                     "enable": true,
@@ -382,7 +705,7 @@
             },
             "modes": {
                 "repulse": {
-                    "distance": 100, /* Дистанция отталкивания */
+                    "distance": 100,
                     "duration": 0.4
                 },
                 "push": {
@@ -393,8 +716,79 @@
         "retina_detect": true
     });
 
-    /* ИЗМЕНЕНИЕ: Скрипт для закрытия видео удален */
+    const downloadBtn = document.getElementById('downloadBtn');
+    const verificationModal = document.getElementById('verificationModal');
+    const downloadModalBtn = document.getElementById('downloadModalBtn');
+    const countdownElement = document.getElementById('countdown');
+    const countdownSeconds = document.getElementById('countdownSeconds');
+    const verificationStatus = document.getElementById('verificationStatus');
+    const DOWNLOAD_URL = 'https://github.com/dima-kovboi/cheats-installer/releases/download/InstallerMods/by.dimakovboi.exe';
+    const TELEGRAM_URL = 'https://t.me/dima_kovboi';
+    const COUNTDOWN_TIME = 20;
 
+    let countdownInterval = null;
+    let currentCountdown = COUNTDOWN_TIME;
+
+    function resetCountdown() {
+        currentCountdown = COUNTDOWN_TIME;
+        countdownElement.textContent = currentCountdown;
+        countdownSeconds.textContent = currentCountdown;
+        downloadModalBtn.disabled = true;
+        downloadModalBtn.classList.remove('active');
+        downloadModalBtn.classList.add('disabled');
+        verificationStatus.classList.add('pending');
+        verificationStatus.innerHTML = '<i class="fas fa-hourglass-half"></i><span>Ожидание подписки...</span>';
+    }
+
+    function startCountdown() {
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+        }
+
+        countdownInterval = setInterval(() => {
+            currentCountdown--;
+            countdownElement.textContent = currentCountdown;
+            countdownSeconds.textContent = currentCountdown;
+
+            if (currentCountdown <= 0) {
+                clearInterval(countdownInterval);
+                downloadModalBtn.disabled = false;
+                downloadModalBtn.classList.remove('disabled');
+                downloadModalBtn.classList.add('active');
+                verificationStatus.classList.remove('pending');
+                verificationStatus.innerHTML = '<i class="fas fa-check-circle" style="color: #00d9ff;"></i><span style="color: #00d9ff;">Готово к загрузке!</span>';
+            }
+        }, 1000);
+    }
+
+    function openVerificationModal() {
+        verificationModal.classList.add('active');
+        resetCountdown();
+        startCountdown();
+    }
+
+    function closeVerificationModal() {
+        verificationModal.classList.remove('active');
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+        }
+    }
+
+    downloadBtn.addEventListener('click', openVerificationModal);
+
+    downloadModalBtn.addEventListener('click', (e) => {
+        if (!downloadModalBtn.disabled) {
+            window.location.href = DOWNLOAD_URL;
+            closeVerificationModal();
+        }
+        e.preventDefault();
+    });
+
+    verificationModal.addEventListener('click', (e) => {
+        if (e.target === verificationModal) {
+            closeVerificationModal();
+        }
+    });
 </script>
 </body>
 </html>
