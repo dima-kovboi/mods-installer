@@ -16,7 +16,6 @@
             --cyan: #00f3ff;
             --bg: #050505;
             --text: #ffffff;
-            --glass: rgba(20, 20, 20, 0.6);
             --border: rgba(255, 255, 255, 0.1);
             --telegram: #24A1DE;
             --youtube: #FF0000;
@@ -33,17 +32,11 @@
             position: relative;
         }
 
-        /* --- НОВЫЙ ФОН (BACKGROUND) --- */
-        
-        /* 1. Фоновые пульсирующие пятна */
+        /* --- ФОН --- */
         .ambient-light {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -3;
-            overflow: hidden;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -3; overflow: hidden;
             background: radial-gradient(circle at 50% 50%, #1a0b2e 0%, #000000 100%);
         }
 
@@ -55,52 +48,20 @@
             animation: floatBlob 10s infinite alternate ease-in-out;
         }
 
-        .blob-1 {
-            top: -10%;
-            left: -10%;
-            width: 50vw;
-            height: 50vw;
-            background: var(--primary);
-            animation-delay: 0s;
-        }
-
-        .blob-2 {
-            bottom: -10%;
-            right: -10%;
-            width: 60vw;
-            height: 60vw;
-            background: #001eff;
-            animation-delay: -5s;
-        }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary); }
+        .blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #001eff; animation-delay: -5s; }
 
         @keyframes floatBlob {
             0% { transform: translate(0, 0) scale(1); }
             100% { transform: translate(50px, 50px) scale(1.1); }
         }
 
-        /* 2. Кибер-сетка (Grid) */
         .cyber-grid {
-            position: fixed;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            z-index: -2;
-            background-image: 
-                linear-gradient(rgba(148, 0, 211, 0.3) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(148, 0, 211, 0.3) 1px, transparent 1px);
+            position: fixed; width: 200%; height: 200%; top: -50%; left: -50%; z-index: -2;
+            background-image: linear-gradient(rgba(148, 0, 211, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 0, 211, 0.3) 1px, transparent 1px);
             background-size: 100px 100px;
             transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px);
-            animation: gridMove 20s linear infinite;
-            opacity: 0.15;
-            pointer-events: none;
-        }
-
-        .cyber-grid::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 0%, #000 70%);
+            animation: gridMove 20s linear infinite; opacity: 0.15; pointer-events: none;
         }
 
         @keyframes gridMove {
@@ -108,328 +69,77 @@
             100% { transform: perspective(500px) rotateX(60deg) translateY(100px) translateZ(-200px); }
         }
 
-        /* 3. Частицы */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
+        #particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1; }
 
-        /* --- ОСНОВНОЙ ИНТЕРФЕЙС --- */
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
+        /* --- UI --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
 
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 0;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
+            position: fixed; top: 0; left: 0; width: 100%; padding: 20px 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 26px;
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--primary);
-        }
-
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Orbitron', sans-serif; font-size: 26px; color: var(--text); text-decoration: none; font-weight: 900; letter-spacing: 2px; text-shadow: 0 0 10px var(--primary); }
         .nav-menu { list-style: none; display: flex; gap: 30px; }
-        .nav-menu a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            position: relative;
-        }
+        .nav-menu a { color: var(--text); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-menu a:hover { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
-        
-        /* --- HERO SECTION --- */
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 80px;
-        }
 
-        .hero-content {
-            background: rgba(10, 10, 10, 0.4);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-        }
+        /* Hero */
+        #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 80px; }
+        .hero-content { background: rgba(10, 10, 10, 0.4); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(5px); box-shadow: 0 0 50px rgba(0,0,0,0.5); }
 
-        /* GLITCH EFFECT ДЛЯ ЗАГОЛОВКА */
-        .glitch-wrapper {
-            display: inline-block;
-            position: relative;
-            margin-bottom: 20px;
-        }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 900; text-transform: uppercase; color: var(--text); margin-bottom: 20px; }
+        .hero-content p { font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); max-width: 600px; margin: 0 auto 40px; }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: var(--text);
-            position: relative;
-            z-index: 1;
-        }
-
-        h1::before, h1::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg);
-            opacity: 0.8;
-        }
-
-        h1::before {
-            color: #ff00c1;
-            z-index: -1;
-            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-            animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
-        }
-
-        h1::after {
-            color: #00fff9;
-            z-index: -2;
-            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-            animation: glitch-anim-2 2s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim-1 {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
-
-        @keyframes glitch-anim-2 {
-            0% { transform: translate(0); }
-            20% { transform: translate(2px, -2px); }
-            40% { transform: translate(2px, 2px); }
-            60% { transform: translate(-2px, -2px); }
-            80% { transform: translate(-2px, 2px); }
-            100% { transform: translate(0); }
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
-
-        /* Кнопка */
         .cta-button {
-            position: relative;
-            padding: 18px 50px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            background: transparent;
-            border: 2px solid var(--primary);
-            text-decoration: none;
-            text-transform: uppercase;
-            cursor: pointer;
-            overflow: hidden;
-            transition: 0.3s;
-            box-shadow: 0 0 20px rgba(148, 0, 211, 0.4);
-            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+            padding: 18px 50px; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff; background: transparent;
+            border: 2px solid var(--primary); text-decoration: none; text-transform: uppercase; cursor: pointer; transition: 0.3s;
+            box-shadow: 0 0 20px rgba(148, 0, 211, 0.4); clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
         }
+        .cta-button:hover { background: var(--primary); box-shadow: 0 0 40px var(--primary); color: #000; }
 
-        .cta-button:hover {
-            background: var(--primary);
-            box-shadow: 0 0 40px var(--primary);
-            color: #000;
-        }
-
-        /* --- СОЦСЕТИ --- */
-        #social {
-            padding: 60px 0 120px;
-            text-align: center;
-        }
-        
-        #social h2 {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px rgba(255,255,255,0.5);
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .social-btn {
-            width: 70px;
-            height: 70px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #fff;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            backdrop-filter: blur(5px);
-            transition: 0.3s;
-            text-decoration: none;
-        }
-
+        /* Social */
+        #social { padding: 60px 0 120px; text-align: center; }
+        #social h2 { font-size: 2rem; margin-bottom: 40px; }
+        .social-icons { display: flex; justify-content: center; gap: 30px; }
+        .social-btn { width: 70px; height: 70px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #fff; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(5px); transition: 0.3s; text-decoration: none; }
         .social-btn:hover { transform: translateY(-5px); }
-        
-        .social-btn.telegram:hover {
-            background: rgba(36, 161, 222, 0.2);
-            border-color: var(--telegram);
-            color: var(--telegram);
-            box-shadow: 0 0 30px rgba(36, 161, 222, 0.4);
-        }
+        .social-btn.telegram:hover { background: rgba(36, 161, 222, 0.2); border-color: var(--telegram); color: var(--telegram); box-shadow: 0 0 30px rgba(36, 161, 222, 0.4); }
+        .social-btn.youtube:hover { background: rgba(255, 0, 0, 0.2); border-color: var(--youtube); color: var(--youtube); box-shadow: 0 0 30px rgba(255, 0, 0, 0.4); }
+        .social-btn.twitch:hover { background: rgba(148, 0, 211, 0.2); border-color: var(--primary); color: var(--primary); box-shadow: 0 0 30px rgba(148, 0, 211, 0.4); }
 
-        .social-btn.youtube:hover {
-            background: rgba(255, 0, 0, 0.2);
-            border-color: var(--youtube);
-            color: var(--youtube);
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
-        }
-        
-        .social-btn.twitch:hover {
-            background: rgba(148, 0, 211, 0.2);
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 0 30px rgba(148, 0, 211, 0.4);
-        }
+        /* Video */
+        .fixed-video-container { position: fixed; bottom: 20px; right: 20px; width: 300px; height: 170px; z-index: 999; border-radius: 10px; overflow: hidden; box-shadow: 0 0 20px var(--primary); border: 1px solid var(--primary); background: #000; }
+        .fixed-video-container video { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 
-        /* --- ВИДЕО --- */
-        .fixed-video-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            height: 170px;
-            z-index: 999;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px var(--primary);
-            border: 1px solid var(--primary);
-            background: #000;
-        }
-        
-        .fixed-video-container::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            box-shadow: inset 0 0 20px #000;
-            pointer-events: none;
-        }
-
-        .fixed-video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-        }
-
-        /* --- МОДАЛЬНОЕ ОКНО --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(8px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-
+        /* Modal */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; }
         .modal-overlay.active { display: flex; animation: fadeIn 0.3s; }
-
-        .modal-content {
-            background: rgba(15, 15, 20, 0.9);
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 50px rgba(148, 0, 211, 0.2);
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-        }
-
-        .modal-content h2 { color: var(--cyan); margin-bottom: 20px; }
+        .modal-content { background: rgba(15, 15, 20, 0.95); border: 1px solid var(--primary); box-shadow: 0 0 50px rgba(148, 0, 211, 0.2); padding: 40px; border-radius: 15px; text-align: center; max-width: 450px; width: 90%; }
         
-        .countdown-timer {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4rem;
-            color: var(--text);
-            margin: 20px 0;
-            text-shadow: 0 0 20px var(--primary);
-        }
+        .countdown-timer { font-family: 'Orbitron', sans-serif; font-size: 4rem; color: var(--text); margin: 20px 0; text-shadow: 0 0 20px var(--primary); }
 
-        .modal-btn {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            margin-top: 15px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            text-decoration: none;
-            color: white;
-            border-radius: 5px;
-            transition: 0.3s;
-            cursor: pointer;
-            border: none;
-        }
-
+        .modal-btn { display: block; width: 100%; padding: 15px; margin-top: 15px; font-family: 'Orbitron', sans-serif; font-weight: 700; text-decoration: none; color: white; border-radius: 5px; transition: 0.3s; cursor: pointer; border: none; }
+        
         .btn-tg { background: var(--telegram); box-shadow: 0 0 15px rgba(36, 161, 222, 0.4); }
         .btn-tg:hover { background: #35b4f0; }
 
-        .btn-dl { background: #333; color: #777; cursor: not-allowed; }
+        .btn-dl { background: #222; color: #555; cursor: not-allowed; border: 1px solid #333; }
+        
+        /* СТИЛЬ АКТИВНОЙ КНОПКИ - ЧЕРНЫЙ ФОН */
         .btn-dl.active {
-            background: var(--primary);
-            color: #fff;
+            background: #000000 !important; /* Черный фон */
+            color: #ffffff !important;     /* Белый текст */
+            border: 2px solid var(--primary); /* Неоновая обводка */
             cursor: pointer;
-            box-shadow: 0 0 20px var(--primary);
+            box-shadow: 0 0 20px rgba(148, 0, 211, 0.5);
             animation: pulse 1.5s infinite;
+        }
+        
+        .btn-dl.active:hover {
+            background: var(--primary) !important; /* При наведении фиолетовый */
+            color: #000 !important;
         }
 
         @keyframes pulse {
@@ -439,26 +149,15 @@
         }
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
-        /* Адаптив */
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .nav-menu { display: none; }
-            .fixed-video-container { width: 200px; height: 113px; }
-        }
-
+        @media (max-width: 768px) { h1 { font-size: 2rem; } .nav-menu { display: none; } .fixed-video-container { width: 200px; height: 113px; } }
     </style>
 </head>
 <body>
 
-<!-- ФОНОВЫЕ ЭЛЕМЕНТЫ -->
-<div class="ambient-light">
-    <div class="light-blob blob-1"></div>
-    <div class="light-blob blob-2"></div>
-</div>
+<div class="ambient-light"><div class="light-blob blob-1"></div><div class="light-blob blob-2"></div></div>
 <div class="cyber-grid"></div>
 <div id="particles-js"></div>
 
-<!-- ШАПКА -->
 <header>
     <nav class="container">
         <a href="#hero" class="logo">dimakovboi</a>
@@ -469,14 +168,11 @@
     </nav>
 </header>
 
-<!-- ОСНОВНОЙ КОНТЕНТ -->
 <main>
     <section id="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="glitch-wrapper">
-                    <h1 data-text="Установщик модов by dimakovboi">Установщик модов by dimakovboi</h1>
-                </div>
+                <h1>Установщик модов by dimakovboi</h1>
                 <p>Самый удобный способ установить моды для Among Us.<br> Быстро, безопасно и всегда актуальные версии.</p>
                 <button class="cta-button" id="downloadBtn">СКАЧАТЬ УСТАНОВЩИК</button>
             </div>
@@ -495,7 +191,6 @@
     </section>
 </main>
 
-<!-- ВИДЕО (БЕЗ КРЕСТИКА) -->
 <div class="fixed-video-container">
     <video src="https://github.com/user-attachments/assets/ab9796d8-3caa-4f99-8c0d-333cbab89498" autoplay loop muted playsinline></video>
 </div>
@@ -504,12 +199,12 @@
 <div class="modal-overlay" id="verificationModal">
     <div class="modal-content">
         <h2><i class="fas fa-shield-alt"></i> Проверка</h2>
-        <p>Для доступа к файлу подпишись на Telegram</p>
+        <p>Для доступа к файлу необходимо подписаться</p>
         
         <div class="countdown-timer" id="countdown">20</div>
-        <p id="statusText" style="color: #aaa; font-size: 0.9rem;">Ожидание подписки...</p>
+        <p id="statusText" style="color: #ff006e; font-size: 0.9rem; margin-bottom: 10px;">Нажми кнопку ниже, чтобы запустить таймер!</p>
 
-        <a href="https://t.me/dima_kovboi" target="_blank" class="modal-btn btn-tg">
+        <a href="https://t.me/dima_kovboi" target="_blank" class="modal-btn btn-tg" id="telegramLink">
             <i class="fab fa-telegram"></i> ПОДПИСАТЬСЯ
         </a>
         <button class="modal-btn btn-dl" id="downloadModalBtn" disabled>
@@ -521,7 +216,6 @@
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <script>
-    /* Настройка Particles.js (Звездная пыль) */
     particlesJS('particles-js', {
         "particles": {
             "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
@@ -529,13 +223,7 @@
             "shape": { "type": "circle" },
             "opacity": { "value": 0.5, "random": true },
             "size": { "value": 2, "random": true },
-            "line_linked": { 
-                "enable": true, 
-                "distance": 150, 
-                "color": "#9400d3", 
-                "opacity": 0.2, 
-                "width": 1 
-            },
+            "line_linked": { "enable": true, "distance": 150, "color": "#9400d3", "opacity": 0.2, "width": 1 },
             "move": { "enable": true, "speed": 1, "direction": "none", "random": true, "out_mode": "out" }
         },
         "interactivity": {
@@ -546,29 +234,52 @@
         "retina_detect": true
     });
 
-    /* Логика таймера */
+    /* ЛОГИКА ТАЙМЕРА */
     const downloadBtn = document.getElementById('downloadBtn');
     const modal = document.getElementById('verificationModal');
     const dlModalBtn = document.getElementById('downloadModalBtn');
+    const telegramLink = document.getElementById('telegramLink');
     const timerDisplay = document.getElementById('countdown');
     const statusText = document.getElementById('statusText');
     
     let timeLeft = 20;
     let timerId = null;
+    let isTimerRunning = false;
 
+    // Открытие модального окна (таймер НЕ запускается)
     downloadBtn.addEventListener('click', () => {
         modal.classList.add('active');
-        startTimer();
+        resetTimerUI();
     });
 
-    function startTimer() {
-        if(timerId) clearInterval(timerId);
+    // Клик по ссылке Телеграм (Запускает таймер)
+    telegramLink.addEventListener('click', () => {
+        if (!isTimerRunning && timeLeft > 0) {
+            startTimer();
+        }
+    });
+
+    function resetTimerUI() {
+        if (timerId) clearInterval(timerId);
         timeLeft = 20;
-        updateDisplay();
+        isTimerRunning = false;
+        timerDisplay.textContent = timeLeft;
+        statusText.textContent = "Нажми ПОДПИСАТЬСЯ, чтобы запустить таймер!";
+        statusText.style.color = "#ff006e"; // Красный цвет предупреждения
+        dlModalBtn.disabled = true;
+        dlModalBtn.classList.remove('active');
+        dlModalBtn.classList.add('btn-dl');
+        dlModalBtn.innerHTML = 'СКАЧАТЬ ФАЙЛ';
+    }
+
+    function startTimer() {
+        isTimerRunning = true;
+        statusText.textContent = "Проверка подписки...";
+        statusText.style.color = "#00f3ff"; // Голубой цвет процесса
         
         timerId = setInterval(() => {
             timeLeft--;
-            updateDisplay();
+            timerDisplay.textContent = timeLeft;
             
             if (timeLeft <= 0) {
                 clearInterval(timerId);
@@ -577,17 +288,14 @@
         }, 1000);
     }
 
-    function updateDisplay() {
-        timerDisplay.textContent = timeLeft;
-    }
-
     function unlockDownload() {
         dlModalBtn.disabled = false;
         dlModalBtn.classList.add('active');
-        dlModalBtn.classList.remove('btn-dl'); // убираем серый стиль
+        dlModalBtn.classList.remove('btn-dl'); 
+        // Кнопка станет черной благодаря классу .active в CSS
         dlModalBtn.innerHTML = '<i class="fas fa-download"></i> СКАЧАТЬ (ГОТОВО)';
         statusText.textContent = "Доступ открыт!";
-        statusText.style.color = "#00f3ff";
+        statusText.style.color = "#00ff00"; // Зеленый цвет успеха
     }
 
     dlModalBtn.addEventListener('click', () => {
@@ -597,11 +305,12 @@
         }
     });
 
-    // Закрытие по клику вне окна (опционально, если нужно строго - уберите этот блок)
+    // Закрытие окна при клике на затемненный фон
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.remove('active');
-            if(timerId) clearInterval(timerId);
+            if (timerId) clearInterval(timerId);
+            isTimerRunning = false;
         }
     });
 </script>
