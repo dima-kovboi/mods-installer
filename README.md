@@ -1,1 +1,1 @@
-# cheats-installer
+# mods-installer
