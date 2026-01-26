@@ -1,0 +1,7 @@
+customtkinter==5.2.2
+requests==2.31.0
+beautifulsoup4==4.12.3
+pypresence==4.3.0
+packaging==23.2
+pillow==10.2.0
+pyinstaller==6.3.0
