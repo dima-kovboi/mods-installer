@@ -1,0 +1,51 @@
+{
+  "version": "1.3",
+  "url": "https://github.com/dima-kovboi/mods-installer/releases/download/1.3/ModInstaller.exe",
+  "mods": {
+    "SickoMenu": {
+      "enabled": false,
+      "reason": "Пока что этот чит не вышел. Как только он выйдет он появится здесь. Вся информация в тгк @dima_kovboi",
+      "urls": {}
+    },
+    "Mod Menu Crew": {
+      "enabled": true,
+      "reason": "",
+      "urls": {
+        "steam": "https://github.com/MRLuke956/ModMenuCrew/releases/download/v17.1.0547/ModMenuCrewSteam.v17.1.zip",
+        "epic": "https://github.com/MRLuke956/ModMenuCrew/releases/download/v17.1.0547/Mod.Menu.Crew.Epic.Games.v17.1.zip"
+      }
+    },
+    "MalumMenu": {
+      "enabled": true,
+      "reason": "",
+      "urls": {
+        "steam": "https://github.com/astra1dev/MalumMenu/releases/download/v2.6.1/MalumMenu_Steam_Itch.zip",
+        "epic": "https://github.com/astra1dev/MalumMenu/releases/download/v2.6.1/MalumMenu_EpicGames_MicrosoftStore_XboxApp.zip"
+      }
+    },
+    "The Endless Host Roles": {
+      "enabled": true,
+      "reason": "",
+      "urls": {
+        "steam": "https://github.com/Gurge44/EndlessHostRoles/releases/download/v7.1.5/EHR.v7.1.5_Steam.zip",
+        "epic": "https://github.com/Gurge44/EndlessHostRoles/releases/download/v7.1.5/EHR.v7.1.5_Epic-Games_Microsoft-Store.zip"
+      }
+    },
+    "AllTheRoles": {
+      "enabled": true,
+      "reason": "",
+      "urls": {
+        "steam": "https://github.com/Zeo666/AllTheRoles/releases/download/0.12.6/AllTheRoles-0.12.6-x86-steam-itch.zip",
+        "epic": "https://github.com/Zeo666/AllTheRoles/releases/download/0.12.6/AllTheRoles-0.12.6-x64-epic-msstore.zip"
+      }
+    },
+    "LotusContinued": {
+      "enabled": true,
+      "reason": "",
+      "urls": {
+        "steam": "https://github.com/Lotus-AU/LotusContinued/releases/download/v1.5.0/Lotus.v1.5.0.Steam.zip",
+        "epic": "https://github.com/Lotus-AU/LotusContinued/releases/download/v1.5.0/Lotus.v1.5.0.Epic+MicrosoftStore.zip"
+      }
+    }
+  }
+}
