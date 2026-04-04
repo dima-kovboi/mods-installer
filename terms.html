@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUM — Условия использования</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #0D1117;
+            --secondary-dark: #161B22;
+            --surface-dark: #1C2333;
+            --card-dark: #21283B;
+            --accent-green: #00E676;
+            --accent-glow: rgba(0, 230, 118, 0.3);
+            --accent-tint: rgba(0, 230, 118, 0.06);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B8C8;
+            --text-muted: #6B7280;
+            --border-subtle: #2D3548;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-image: radial-gradient(circle at 50% 10%, #1a2333 0%, #0d1117 100%);
+        }
+
+        .launcher-window {
+            width: 95vw;
+            max-width: 1100px;
+            height: 85vh;
+            max-height: 700px;
+            background: var(--primary-dark);
+            border: 1px solid var(--accent-tint);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px var(--accent-tint);
+            overflow: hidden;
+        }
+
+        .title-bar {
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .title-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-logo {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-green);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .app-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .main-layout {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background: var(--secondary-dark);
+            border-right: 1px solid var(--border-subtle);
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.2s;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: var(--accent-tint);
+            color: var(--accent-green);
+        }
+
+        .content-area {
+            padding: 40px;
+            overflow-y: auto;
+            line-height: 1.6;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--accent-green);
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            margin: 24px 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        ul {
+            margin-bottom: 16px;
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-subtle);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="launcher-window">
+        <div class="title-bar">
+            <div class="title-left">
+                <div class="app-logo">A</div>
+                <span class="app-name">AUM</span>
+            </div>
+        </div>
+
+        <div class="main-layout">
+            <div class="sidebar">
+                <a href="index.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Главная</span>
+                </a>
+                <a href="social.html" class="nav-item">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Соцсети</span>
+                </a>
+                <a href="terms.html" class="nav-item active">
+                    <i class="fas fa-file-contract"></i>
+                    <span>Условия</span>
+                </a>
+                <a href="privacy.html" class="nav-item">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Приватность</span>
+                </a>
+            </div>
+
+            <div class="content-area">
+                <h1>Условия использования (Terms of Use)</h1>
+                
+                <p>Добро пожаловать в AUM (Among Us Modder). Используя наше приложение или сайт, вы соглашаетесь с данными условиями.</p>
+
+                <h2>1. Использование приложения</h2>
+                <p>AUM является инструментом для управления модификациями игры Among Us. Вы соглашаетесь использовать ПО только в личных, некоммерческих целях.</p>
+
+                <h2>2. Модификации и сторонний контент</h2>
+                <p>Мы предоставляем доступ к модификациям, созданным сообществом. AUM не несет ответственности за стабильность, безопасность или содержание сторонних модов. Используйте их на свой страх и риск.</p>
+
+                <h2>3. Ответственность и баны</h2>
+                <p>Мы не гарантируем, что использование модификаций не приведет к блокировке вашего игрового аккаунта в сервисах Steam, Epic Games или других. Вы берете на себя полную ответственность за последствия использования модов в сетевой игре.</p>
+
+                <h2>4. Интеллектуальная собственность</h2>
+                <p>Все права на игру Among Us принадлежат InnerSloth. Все права на читы и моды принадлежат их соответствующим авторам.</p>
+
+                <h2>5. Изменения условий</h2>
+                <p>Мы оставляем за собой право изменять данные условия в любое время. Продолжение использования сервиса означает ваше согласие с новой редакцией.</p>
+
+                <p style="margin-top: 40px; font-size: 13px; color: var(--text-muted);">Последнее обновление: 04.04.2026</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
