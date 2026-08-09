@@ -1,3 +1,5 @@
+> **⚠️ Внимание!** Проект больше не поддерживается, open sourse не будет, только за плату. По поводу этого пишите в тг @dimadebug или дс @dimakovboi
+
 # AUM — Among Us Modder
 
 Менеджер модов для Among Us с автоматической установкой, обновлением и кастомизацией.
@@ -57,10 +59,5 @@ Telegram канал: [@archive_dimakovboi](https://t.me/archive_dimakovboi)
 
 ---
 
-## Лицензия
-
-Open-source будет доступен в случае забрасывания проекта.
-
----
 
 ## © 2026 dimakovboi
